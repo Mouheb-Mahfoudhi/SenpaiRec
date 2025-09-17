@@ -22,7 +22,7 @@ def print_table(anime_title):
     console.print(table)
 
 
-##def print_synopsis(anime_title):
+def print_synopsis(anime_title):
     animes = recommender(anime_title)
     choice = int(input("choose an option number to view the corresponding anime's synopsis"))
     if choice==0 or choice not in [anime["option"] for anime in animes]:
@@ -37,7 +37,6 @@ def print_table(anime_title):
     )
     console = Console()
     console.print(synopsis_panel)
-
 
 
 
