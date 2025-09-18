@@ -5,20 +5,31 @@ import utils
 def get_info(title):
 
     if(utils.selection_choice() in ["A","ANIME"]):
-        r = requests.get(f"https://myanimelist.net/anime/{utils.return_anime_id(title)}")
 
-        soup = BeautifulSoup(r.text,'lxml')
+        r = requests.get(f"https://myanimelist.net/anime/{utils.return_anime_id(title)}").text
+        soup = BeautifulSoup(r,'lxml')
         
-        episodes_label = soup.find("span", string="Episodes:")
-        episodes = episodes_label.next_sibling.strip()
+        episodes = soup.find("span", string="Episodes:").next_sibling.strip()
+        status = soup.find("span", string="Status:").next_sibling.strip()
+        rating = soup.find("span", itemprop="ratingValue").text
+        ranking = soup.find("span", string="Ranked:").next_sibling.strip()[1::]
+        demographic = soup.find("span", string="Demographic:").next_sibling.next_sibling.text
+        synopsis = soup.find("span", itemprop="description").text
 
-        status_label = soup.find("span", string="Status:")
-        status = status_label.next_sibling.strip()
+        return {"episodes":episodes,"status":status, "rating":rating, "ranking":ranking, "demographic":demographic, "synopsis":synopsis}
 
-        ratingValue_label = soup.find("span", string="ratingValue:")
-        ratingValue = ratingValue_label.next_sibling.strip()
-        
-        print("Episodes:", episodes)
-        print("Status:", status)
-        
-get_info('monster')
+    else:
+
+        r = requests.get(f"https://myanimelist.net/manga/{utils.return_manga_id(title)}").text
+        soup = BeautifulSoup(r,'lxml')
+
+        volumes = soup.find("span", string="Volumes:").next_sibling.strip()
+        chapters = soup.find("span", string="Chapters:").next_sibling.strip()
+        status = soup.find("span", string="Status:").next_sibling.strip()
+        rating = soup.find("span", itemprop="ratingValue").text
+        ranking = soup.find("span", string="Ranked:").next_sibling.strip()[1::]
+        demographic = soup.find("span", string="Demographic:").next_sibling.next_sibling.text
+        synopsis = soup.find("span", itemprop="description").text
+
+        return {"volumes":volumes, "chapters": chapters, "status":status, "rating":rating, "ranking":ranking, "demographic":demographic, "synopsis":synopsis}
+    
