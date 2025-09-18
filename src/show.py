@@ -1,29 +1,38 @@
 import utils
+import parser
 
 class Show:
-    def __init__(self, title, rating, ranking, status, demographic):
-        self.id = utils.return_anime_id(utils.name_converter(title))
+    def __init__(self, title):
         self.title = title
-        self.rating = rating
-        self.ranking = ranking
-        self.status = status
-        self.demographic = demographic
     
 
 class Anime(Show):
-    def __init__(self, title, rating, ranking, status, demographic, episodes, synopsis):
-        super().__init__(title, rating, ranking, status, demographic)
-        self.episodes = episodes
-        self.synopsis = synopsis
+    def __init__(self, title):
+        super().__init__(title)
+        self.id = utils.return_anime_id(title)
+        anime = parser.get_info_anime(title)
+        self.episodes = anime["episodes"]
+        self.status = anime["status"]
+        self.rating = anime["rating"]
+        self.ranking = anime["ranking"]
+        self.demographic = anime["demographic"]
+        self.synopsis = anime["synopsis"]
 
 
 class Manga(Show):
-    def __init__(self, title, rating, status, demographic, volumes, chapters, synopsis):
-        super().__init__(title, rating, status, demographic)
-        self.volumes = volumes
-        self.chapters = chapters
-        self.synopsis = synopsis
+    def __init__(self, title):
+        super().__init__(title)
+        self.id = utils.return_manga_id(title)
+        manga = parser.get_info_manga(title)
+        self.chapters = manga["chapters"]
+        self.volumes = manga["volumes"]
+        self.status = manga["status"]
+        self.rating = manga["rating"]
+        self.ranking = manga["ranking"]
+        self.demographic = manga["demographic"]
+        self.synopsis = manga["synopsis"]
 
 
-
+anime1 = Anime('monster')
+manga1 = Manga('berserk')
 

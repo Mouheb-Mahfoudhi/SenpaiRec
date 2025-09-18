@@ -14,8 +14,6 @@ def return_manga_id(manga_title):
     first_result = data["data"][0]
     return first_result["mal_id"]
 
-def selection_choice():
-    choice = input("are you looking for a (M)anga or an (A)nime? \n")
-    return choice.upper()
+
 
     

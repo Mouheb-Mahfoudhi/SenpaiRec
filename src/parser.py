@@ -2,9 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import utils
 
-def get_info(title):
-
-    if(utils.selection_choice() in ["A","ANIME"]):
+def get_info_anime(title):
 
         r = requests.get(f"https://myanimelist.net/anime/{utils.return_anime_id(title)}").text
         soup = BeautifulSoup(r,'lxml')
@@ -14,11 +12,11 @@ def get_info(title):
         rating = soup.find("span", itemprop="ratingValue").text
         ranking = soup.find("span", string="Ranked:").next_sibling.strip()[1::]
         demographic = soup.find("span", string="Demographic:").next_sibling.next_sibling.text
-        synopsis = soup.find("span", itemprop="description").text
+        synopsis = soup.find("p", itemprop="description").text
 
         return {"episodes":episodes,"status":status, "rating":rating, "ranking":ranking, "demographic":demographic, "synopsis":synopsis}
 
-    else:
+def get_info_manga(title):
 
         r = requests.get(f"https://myanimelist.net/manga/{utils.return_manga_id(title)}").text
         soup = BeautifulSoup(r,'lxml')
