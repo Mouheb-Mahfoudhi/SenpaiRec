@@ -1,5 +1,4 @@
 import utils
-import parser
 
 class Show:
     def __init__(self, title):
