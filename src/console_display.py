@@ -2,6 +2,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 import recommender
+from rich.prompt import Prompt
+
 
 def print_table_anime(anime_title,animes):
 
@@ -87,12 +89,17 @@ def print_table_manga(manga_title,mangas):
 
 
 def start_console():
-    choice = input("are looking for a manga or anime recommendation?\n")
+    console = Console()
+    welcome_msg = "[bold cyan]🎌 Welcome to SenpaiRec 🎌[/bold cyan]\n"
+    welcome_msg += "[italic]Your personal anime/manga recommender[/italic]\n\n"
+    welcome_msg += "[italic]type anime/manga to start[/italic]"
+    console.print(Panel.fit(welcome_msg, border_style="magenta", title="SenpaiRec", subtitle="Recommendation made easy"))
+    choice = Prompt.ask("Are you looking for an ", choices=["anime", "manga"],  default="anime", case_sensitive=False)
     if choice=="anime":
-        anime_title = input ("what anime are you looking for a recommendaton for?\n")
+        anime_title = Prompt.ask("Enter the anime's title", case_sensitive=False)
         animes = recommender.recommendation_list_anime(anime_title)
         print_table_anime(anime_title,animes)
     else:
-        manga_title = input ("what manga are you looking for a recommendaton for?\n")
+        manga_title = Prompt.ask("Enter the manga's title", case_sensitive=False)
         mangas = recommender.recommendation_list_manga(manga_title)
         print_table_manga(manga_title,mangas)
