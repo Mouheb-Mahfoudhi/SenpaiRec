@@ -15,6 +15,7 @@ class Anime(Show):
         self.status = anime["status"]
         self.rating = anime["rating"]
         self.ranking = anime["ranking"]
+        self.genre = anime["genres"]
         self.demographic = anime["demographic"]
         self.synopsis = anime["synopsis"]
 
@@ -32,7 +33,4 @@ class Manga(Show):
         self.demographic = manga["demographic"]
         self.synopsis = manga["synopsis"]
 
-
-anime1 = Anime('monster')
-manga1 = Manga('berserk')
 
