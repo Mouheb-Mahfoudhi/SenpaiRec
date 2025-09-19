@@ -30,6 +30,7 @@ class Manga(Show):
         self.status = manga["status"]
         self.rating = manga["rating"]
         self.ranking = manga["ranking"]
+        self.genre = manga["genres"]
         self.demographic = manga["demographic"]
         self.synopsis = manga["synopsis"]
 
