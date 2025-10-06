@@ -1,4 +1,4 @@
-#SenpaiRec
+# SenpaiRec
 
 A script that recommends anime or manga based on your selected title, displaying each suggestion in a clear format. <br>
 Using the requests and BeautifulSoup libraries to fetch and parse content from MyAnimeList, and the rich library for console output.
