@@ -15,7 +15,7 @@ You can install both locally and via Docker.
 ### Docker
 
 ```
-Docker run -it skellder/senpairec:latest
+docker run -it skellder/senpairec:latest
 ```
 ### Locally
 
