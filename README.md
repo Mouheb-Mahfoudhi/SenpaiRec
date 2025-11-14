@@ -9,7 +9,17 @@ Using the requests and BeautifulSoup libraries to fetch and parse content from M
 
 
 ## Installation
-Before you begin, make sure you have the following installed:
+
+You can install both locally and via Docker.
+
+### Docker
+
+```
+Docker run -it skellder/senpairec:latest
+```
+### Locally
+
+Before you begin the local installation, make sure you have the following installed:
 
 Python 3.8+
 
